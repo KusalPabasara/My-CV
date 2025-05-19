@@ -1,0 +1,61 @@
+%%%%%%%%%%%%%%%
+% Professional CV Template
+%
+% Based on template by LianTze Lim (liantze@gmail.com)
+% Customized for Wandawa Gamage Kusal Pabasara
+%%%%%%%%%%%%%%%
+\documentclass[a4paper,skipsamekey,11pt,english]{curve}
+% Default biblatex style used for the publication list
+\PassOptionsToPackage{style=ieee,sorting=ydnt,uniquename=init,defernumbers=true}{biblatex}
+% Most commands and style definitions are in settings.sty.
+\usepackage{settings}
+\DefineBibliographyStrings{english}{url={\textsc{url}}}
+
+% If you have publications, uncomment and use this
+% \addbibresource{own-bib.bib}
+% \mynames{Gamage/Wandawa\bibnamedelima Kusal\bibnamedelima Pabasara}
+
+% Change the fonts if you want
+\ifxetexorluatex % If you're using XeLaTeX or LuaLaTeX
+  \usepackage{fontspec} 
+  \usepackage[p,osf,swashQ]{cochineal}
+  \usepackage[medium,bold]{cabin}
+  \usepackage[varqu,varl,scale=0.9]{zi4}
+\else % If you're using pdfLaTeX or latex
+  \usepackage[T1]{fontenc}
+  \usepackage[p,osf,swashQ]{cochineal}
+  \usepackage{cabin}
+  \usepackage[varqu,varl,scale=0.9]{zi4}
+\fi
+
+% Photo is only shown if "fullonly" is included
+\includecomment{fullonly}
+
+% Header information
+\leftheader{%
+  {\LARGE\bfseries\sffamily Wandawa Gamage Kusal Pabasara}\\[0.3cm]
+  \begin{tabular}{@{}ll@{}}
+    \makefield{\faEnvelope[regular]}{\href{mailto:kusalp.23@cse.mrt.ac.lk}{\texttt{kusalp.23@cse.mrt.ac.lk}}} \\[0.15cm]
+    \makefield{\faPhone}{\href{tel:+94716720764}{\texttt{+94 716720764}}} \\[0.15cm]
+    \makefield{\faWhatsapp}{\href{https://wa.me/94716720764}{\texttt{WhatsApp Contact}}} \\[0.15cm]
+    \makefield{\faLinkedin}{\href{http://bit.ly/434iyoh}{\texttt{LinkedIn Profile}}} \\[0.15cm]
+    \makefield{\faGlobe}{\href{https://kusalpabasara.github.io/MYPersonalWebsite/}{\texttt{Personal Website}}}
+  \end{tabular}
+}
+
+\rightheader{~}
+\begin{fullonly}
+\photo[r]{photo}
+\photoscale{0.13}
+\end{fullonly}
+\title{Curriculum Vitae}
+
+\begin{document}
+\makeheaders[c]
+\makerubric{education}
+\makerubric{experience}
+\makerubric{skills}
+\makerubric{projects}
+\makerubric{activities}
+\makerubric{achievements}
+\end{document}
