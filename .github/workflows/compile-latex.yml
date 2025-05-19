@@ -1,33 +1,23 @@
-name: Compile LaTeX CV and Deploy
+name: Compile LaTeX
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Set up LaTeX
-        uses: dante-ev/latex-action@v2
-        with:
-          root_file: cv.tex
+      - name: Install LaTeX
+        run: sudo apt-get install -y texlive-full
 
-      - name: Upload PDF
-        uses: actions/upload-artifact@v3
-        with:
-          name: CV
-          path: cv.pdf
+      - name: Compile CV
+        run: pdflatex -interaction=nonstopmode cv.tex
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: .
-          keep_files: true
-          destination_dir: .
+      - name: Move PDF to docs
+        run: |
+          mkdir -p docs
+          cp cv.pdf docs/cv.pdf
