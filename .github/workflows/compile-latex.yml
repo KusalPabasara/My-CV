@@ -32,6 +32,11 @@ jobs:
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
-        git add cv.pdf
-        git commit -m "Auto-compile cv.pdf from LaTeX"
-        git push
+
+        if [ -f cv.pdf ]; then
+          git add cv.pdf
+          git commit -m "Auto-compile cv.pdf from LaTeX" || echo "Nothing to commit"
+          git push || echo "Nothing to push"
+        else
+          echo "cv.pdf not found, skipping commit."
+        fi
