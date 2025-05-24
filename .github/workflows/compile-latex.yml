@@ -35,9 +35,8 @@ jobs:
         git config --global user.email "github-actions@github.com"
 
         if [ -f cv.pdf ]; then
-          # Always replace the old cv.pdf version
-          git rm --cached cv.pdf || true  # remove previous if tracked
-          git add -f cv.pdf               # force add to ensure it's staged
+          git rm --cached cv.pdf || true
+          git add -f cv.pdf
           git commit -m "Auto-compile and update cv.pdf from LaTeX" || echo "Nothing new to commit"
           git push || echo "Nothing to push"
         else
