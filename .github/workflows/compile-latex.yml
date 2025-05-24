@@ -29,15 +29,16 @@ jobs:
             tikz-cd pgf enumitem \
             fontawesome5 moderncv fontspec
 
-    - name: Commit compiled PDF
+    - name: Force Commit Compiled PDF
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
 
         if [ -f cv.pdf ]; then
-          git add cv.pdf
-          git commit -m "Auto-compile cv.pdf from LaTeX" || echo "Nothing to commit"
+          # Always replace the old cv.pdf version
+          git rm --cached cv.pdf || true  # remove previous if tracked
+          git add -f cv.pdf               # force add to ensure it's staged
+          git commit -m "Auto-compile and update cv.pdf from LaTeX" || echo "Nothing new to commit"
           git push || echo "Nothing to push"
         else
           echo "cv.pdf not found, skipping commit."
-        fi
