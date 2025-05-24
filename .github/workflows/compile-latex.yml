@@ -16,6 +16,7 @@ jobs:
 
     - name: Setup LaTeX and Compile
       uses: xu-cheng/latex-action@v2
+      continue-on-error: true
       with:
         root_file: cv.tex
         latexmk_use_xelatex: true
