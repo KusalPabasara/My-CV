@@ -14,10 +14,18 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Setup LaTeX
+    - name: Setup LaTeX and Compile
       uses: xu-cheng/latex-action@v2
       with:
         root_file: cv.tex
+        latexmk_use_xelatex: true
+        pre_compile: |
+          tlmgr update --self
+          tlmgr install \
+            fontspec xcolor geometry graphicx \
+            babel latexmk ifthen etoolbox \
+            tikz-cd pgf enumitem \
+            fontawesome5 moderncv
 
     - name: Commit compiled PDF
       run: |
