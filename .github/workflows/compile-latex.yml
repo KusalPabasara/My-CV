@@ -23,10 +23,10 @@ jobs:
         pre_compile: |
           tlmgr update --self
           tlmgr install \
-            fontspec xcolor geometry graphicx \
-            babel latexmk ifthen etoolbox \
+            xcolor geometry \
+            babel latexmk etoolbox \
             tikz-cd pgf enumitem \
-            fontawesome5 moderncv
+            fontawesome5 moderncv fontspec
 
     - name: Commit compiled PDF
       run: |
