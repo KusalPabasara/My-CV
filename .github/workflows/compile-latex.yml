@@ -1,23 +1,28 @@
-name: Compile LaTeX
+name: Compile LaTeX CV
 
 on:
   push:
-    branches: [main]
+    paths:
+      - '**.tex'
+      - '.github/workflows/compile-latex.yml'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Install LaTeX
-        run: sudo apt-get install -y texlive-full
+    - name: Setup LaTeX
+      uses: dante-ev/latex-action@v2
+      with:
+        root_file: cv.tex
 
-      - name: Compile CV
-        run: pdflatex -interaction=nonstopmode cv.tex
-
-      - name: Move PDF to docs
-        run: |
-          mkdir -p docs
-          cp cv.pdf docs/cv.pdf
+    - name: Commit compiled PDF
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+        git add cv.pdf
+        git commit -m "Auto-compile cv.pdf from LaTeX"
+        git push
