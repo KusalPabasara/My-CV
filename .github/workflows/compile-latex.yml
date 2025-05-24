@@ -41,3 +41,4 @@ jobs:
           git push || echo "Nothing to push"
         else
           echo "cv.pdf not found, skipping commit."
+        fi
