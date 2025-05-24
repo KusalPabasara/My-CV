@@ -19,6 +19,7 @@ jobs:
       continue-on-error: true
       with:
         root_file: cv.tex
+        args: -pdf -file-line-error -interaction=nonstopmode -halt-on-error -f
         latexmk_use_xelatex: true
         pre_compile: |
           tlmgr update --self
